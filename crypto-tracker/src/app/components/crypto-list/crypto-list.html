@@ -1,0 +1,13 @@
+<div class="crypto-container">
+  <div *ngFor="let coin of cryptos" class="crypto-card">
+    <img [src]="coin.image" alt="{{coin.name}}" />
+    <div class="crypto-info">
+      <span class="name">{{ coin.name }}</span>
+      <span class="price">${{ coin.current_price | number:'1.2-2' }}</span>
+      <span *ngIf="coin.price_change_percentage_24h !== null"
+            [ngClass]="{'up': coin.price_change_percentage_24h > 0, 'down': coin.price_change_percentage_24h < 0}">
+        {{ coin.price_change_percentage_24h | number:'1.2-2' }}%
+      </span>
+    </div>
+  </div>
+</div>
