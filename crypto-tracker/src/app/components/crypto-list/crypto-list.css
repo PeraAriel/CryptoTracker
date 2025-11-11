@@ -1,92 +1,166 @@
-/* Container generale */
+/* =========================
+   LAYOUT GENERALE
+   ========================= */
 .crypto-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 16px;
-  padding: 16px;
-  background-color: #ffffff; /* sfondo scuro */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 18px;
+  padding: 24px;
+  background: radial-gradient(circle at top left, #101020, #0a0a16);
+  min-height: 100vh;
 }
 
-/* Card singola */
+/* =========================
+   CARD SINGOLA
+   ========================= */
 .crypto-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px;
-  border-radius: 12px;
-  background-color: #000000; /* card scura */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  padding: 16px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #2b2b3c, #1c1c29);
+  box-shadow: 0 0 0 rgba(0, 255, 255, 0),
+              0 8px 16px rgba(0, 0, 0, 0.5);
   text-align: center;
   cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  overflow: hidden;
 }
 
-/* Hover effetto */
+/* Effetto "glow" ai bordi */
+.crypto-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(0, 255, 149, 0.3));
+  -webkit-mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.crypto-card:hover::before {
+  opacity: 1;
+}
+
+/* Hover dinamico */
 .crypto-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.8);
-  background: linear-gradient(145deg, #2c2e44, #1e1f2f);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 22px rgba(0, 255, 255, 0.15),
+              0 0 48px rgba(0, 255, 255, 0.1);
+  background: linear-gradient(145deg, #232436, #151626);
 }
 
-/* Immagine */
+/* =========================
+   IMMAGINE
+   ========================= */
 .crypto-card img {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 8px;
-  transition: transform 0.3s;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 10px;
+  transition: transform 0.6s ease;
 }
 
 .crypto-card:hover img {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.7));
 }
 
-/* Nome e prezzo */
+/* =========================
+   TESTI E INFO
+   ========================= */
 .crypto-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
 }
 
 .name {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #00e1ff; /* azzurro brillante */
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #00e1ff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
+  transition: color 0.3s ease;
 }
 
+.crypto-card:hover .name {
+  color: #66f7ff;
+}
+
+/* Prezzo */
 .price {
-  font-weight: 500;
-  color: #00ff94; /* verde neon */
-  font-size: 0.95rem;
-  transition: color 0.3s;
-}
-
-.crypto-card:hover .price {
-  color: #00b36b; /* verde scuro al hover */
-}
-
-/* Titolo pagina */
-h2 {
-  text-align: center;
-  margin-top: 24px;
-  color: #00d4ff; /* azzurro neon per contrasto */
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-}
-.crypto-info span.up {
-  color: #00ff94; /* verde per guadagni */
   font-weight: 600;
+  color: #00ff94;
+  font-size: 0.95rem;
+  transition: color 0.4s ease, transform 0.3s ease;
+  animation: pulsePrice 2.8s infinite ease-in-out;
+}
+
+@keyframes pulsePrice {
+  0%, 100% { transform: scale(1); color: #00ff94; }
+  50% { transform: scale(1.06); color: #4dffaa; }
+}
+
+/* =========================
+   SEGNALE + VARIAZIONI
+   ========================= */
+.crypto-info span.up {
+  color: #00ff94;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(0, 255, 149, 0.4);
 }
 
 .crypto-info span.down {
-  color: #ff4c4c; /* rosso per perdite */
+  color: #ff4c4c;
   font-weight: 600;
+  text-shadow: 0 0 6px rgba(255, 76, 76, 0.4);
 }
+
 .crypto-info .signal {
   display: block;
   margin-top: 4px;
   font-weight: 700;
-  font-size: 0.85rem;
-  padding: 2px 6px;
-  border-radius: 6px;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 8px;
   text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
+.crypto-card:hover .signal {
+  background: rgba(0, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   TITOLO PAGINA
+   ========================= */
+h2 {
+  text-align: center;
+  margin: 24px 0 8px;
+  color: #00d4ff;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  letter-spacing: 1px;
+  animation: titleGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+  }
+  to {
+    text-shadow: 0 0 22px rgba(0, 255, 255, 0.8);
+  }
+}
