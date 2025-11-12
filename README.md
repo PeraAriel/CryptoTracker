@@ -14,4 +14,5 @@ L’app ha un tema scuro moderno e un layout a griglia responsive, con animazion
 <img width="1899" height="921" alt="image" src="https://github.com/user-attachments/assets/64bc1f7e-941c-4e89-8858-f4321ccfec15" />
 
 
+<img width="505" height="298" alt="image" src="https://github.com/user-attachments/assets/c7fa76da-868a-4d49-af55-826af08a0c1d" />
 
