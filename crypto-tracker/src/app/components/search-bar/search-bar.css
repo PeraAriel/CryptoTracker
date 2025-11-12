@@ -1,0 +1,79 @@
+/* Contenitore principale centrato */
+.search-container-wrapper {
+  display: flex;
+  justify-content: center; /* centro orizzontale */
+  margin: 20px 0;
+  position: relative;
+}
+
+/* Contenitore della barra di ricerca */
+.search-container {
+  position: relative; /* necessario per i suggerimenti */
+  display: flex;
+  gap: 8px;
+}
+
+/* Input della barra */
+input {
+  width: 300px; /* più largo e visibile */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 16px;
+}
+
+/* Pulsante ricerca */
+button {
+  background-color: #9b9a9a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+/* Lista dei suggerimenti */
+.suggestions {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+  z-index: 10;
+}
+
+.suggestions li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #000000; /* Testo nero */
+}
+
+}
+
+.suggestions li:hover {
+  background-color: #f5f5f5;
+}
+
+.suggestions img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}

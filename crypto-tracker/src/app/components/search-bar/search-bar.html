@@ -1,1 +1,22 @@
-<p>search-bar works!</p>
+<div class="search-container-wrapper">
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Cerca una crypto..."
+      [(ngModel)]="query"
+      (input)="onInputChange()"
+      (keyup.enter)="onSearch()"
+    />
+    <button (click)="onSearch()">Search</button>
+
+    <ul class="suggestions" *ngIf="showSuggestions">
+      <li *ngFor="let c of filtered" (click)="selectCrypto(c.name)">
+        <img [src]="c.image" alt="" />
+        <span>{{ c.name }} ({{ c.symbol.toUpperCase() }})</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Font moderno -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">

@@ -1,6 +1,11 @@
+<app-search-bar
+  [cryptos]="cryptos"
+  (search)="onSearchCrypto($event)">
+</app-search-bar>
+
 <div class="crypto-container">
-  <div *ngFor="let coin of cryptos" class="crypto-card">
-    <img [src]="coin.image" alt="{{coin.name}}" />
+  <div *ngFor="let coin of cryptos" class="crypto-card" #cryptoCard>
+    <img [src]="coin.image" alt="{{ coin.name }}" />
     <div class="crypto-info">
       <span class="name">{{ coin.name }}</span>
       <span class="price">${{ coin.current_price | number:'1.2-2' }}</span>
@@ -11,3 +16,6 @@
     </div>
   </div>
 </div>
+
+<!-- Font moderno -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
